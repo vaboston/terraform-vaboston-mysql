@@ -31,6 +31,12 @@ func resourceDatabase() *schema.Resource {
 				ForceNew: true,
 			},
 
+                        "id": {
+                                Type:     schema.TypeString,
+                                Required: true,
+                                ForceNew: true,
+                        },
+
 			"default_character_set": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -60,7 +66,7 @@ func CreateDatabase(d *schema.ResourceData, meta interface{}) error {
 		return err
 	}
 
-	d.SetId(d.Get("name").(string))
+	d.SetId(d.Get("id").(string))
 
 	return ReadDatabase(d, meta)
 }
